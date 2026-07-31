@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio Status</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 30px; background: #0f172a; color: white; }
+    .card { max-width: 700px; margin: auto; background: #1e293b; padding: 24px; border-radius: 12px; }
+    .pill { display: inline-block; padding: 6px 12px; border-radius: 999px; background: #2563eb; margin-top: 10px; }
+    code { background: #334155; padding: 2px 6px; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Portfolio Status</h1>
+    <p id="status">Loading...</p>
+    <div class="pill" id="mail-status">Mail: checking</div>
+    <pre id="details"></pre>
+  </div>
+
+  <script>
+    async function loadStatus() {
+      try {
+        const response = await fetch('/api/health');
+        const data = await response.json();
+        document.getElementById('status').textContent = 'Server is running';
+        document.getElementById('mail-status').textContent = data.emailConfigured ? 'Mail: configured' : 'Mail: not configured';
+        document.getElementById('details').textContent = JSON.stringify(data, null, 2);
+      } catch (error) {
+        document.getElementById('status').textContent = 'Server unreachable';
+        document.getElementById('mail-status').textContent = 'Mail: unavailable';
+      }
+    }
+
+    loadStatus();
+  </script>
+</body>
+</html>

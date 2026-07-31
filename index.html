@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Akula Sanjay Kumar - Software Engineer, Web Developer & Python Programmer from Challapalli, Andhra Pradesh. Professional portfolio showcasing skills, projects, and experience.">
+    <meta name="keywords" content="Akula Sanjay Kumar, Software Engineer, Web Developer, Python, Portfolio, Challapalli, Andhra Pradesh">
+    <meta name="author" content="Akula Sanjay Kumar">
+    <meta property="og:title" content="Akula Sanjay Kumar | Software Engineer Portfolio">
+    <meta property="og:description" content="Professional portfolio of Akula Sanjay Kumar - Software Engineer & Web Developer from Challapalli, Andhra Pradesh">
+    <meta property="og:image" content="profile.jpg">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sanjaykumar-akula.github.io">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Akula Sanjay Kumar | Software Engineer">
+    <meta name="twitter:description" content="Software Engineer & Web Developer from Challapalli, Andhra Pradesh">
+    <title>Akula Sanjay Kumar | Software Engineer Portfolio</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
+</head>
+<body>
+
+    <!-- ================= PRELOADER ================= -->
+    <div class="preloader" id="preloader">
+        <div class="loader-ring"></div>
+        <div class="loader-text">Loading...</div>
+    </div>
+
+    <!-- ================= CURSOR FOLLOWER ================= -->
+    <div class="cursor-follower" id="cursorFollower"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+
+    <!-- ================= PARTICLE BACKGROUND ================= -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- ================= FLOATING SHAPES ================= -->
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+        <div class="shape shape-5"></div>
+    </div>
+
+    <!-- ================= NAVBAR ================= -->
+    <nav class="navbar" id="navbar">
+        <div class="logo">
+            <span class="logo-text">Akula's Portfolio</span>
+        </div>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home" class="nav-link active">Home</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#skills" class="nav-link">Skills</a></li>
+            <li><a href="#projects" class="nav-link">Projects</a></li>
+            <li><a href="#experience" class="nav-link">Experience</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <div class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ================= HERO SECTION ================= -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-badge" data-aos="fade-down" data-aos-delay="100">
+                <span class="badge-dot"></span>
+                Available for opportunities
+            </div>
+
+            <h3 class="hero-greeting" data-aos="fade-up" data-aos-delay="200">Hello, I'm</h3>
+
+            <h1 class="hero-name" data-aos="fade-up" data-aos-delay="300">
+                <span id="profile-name">Akula Sanjay Kumar</span>
+            </h1>
+
+            <div class="hero-role" data-aos="fade-up" data-aos-delay="400">
+                <span class="role-prefix">I'm a </span>
+                <span class="typing-wrapper">
+                    <span id="typing"></span>
+                    <span class="typing-cursor">|</span>
+                </span>
+            </div>
+
+            <p class="hero-description" data-aos="fade-up" data-aos-delay="500" id="profile-summary">
+                Passionate software engineer crafting elegant digital experiences with clean code and modern technologies.
+            </p>
+
+            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="600">
+                <a href="resume.pdf" class="btn btn-primary" download>
+                    <i class="fas fa-download"></i>
+                    <span>Download Resume</span>
+                </a>
+                <a href="#contact" class="btn btn-outline">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>Hire Me</span>
+                </a>
+                <button class="btn btn-gold" onclick="showCertificatesModal()">
+                    <i class="fas fa-certificate"></i>
+                    <span>My Certifications</span>
+                </button>
+            </div>
+
+
+        </div>
+
+        <div class="hero-visual" data-aos="fade-left" data-aos-delay="400">
+            <div class="hero-image-wrapper" id="heroImageWrapper">
+                <div class="hero-image-glow"></div>
+                <img src="profile.jpg" alt="Sanjay Kumar" class="hero-image" id="heroImage">
+                <div class="hero-image-border"></div>
+                <div class="hero-status-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= ABOUT SECTION ================= -->
+    <section id="about" class="about">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-subtitle">About Me</span>
+            <h2 class="section-title">Who <span class="gradient-text">I Am</span></h2>
+            <div class="section-divider">
+                <span class="divider-line"></span>
+                <span class="divider-icon"><i class="fas fa-user"></i></span>
+                <span class="divider-line"></span>
+            </div>
+        </div>
+
+        <div class="about-container">
+            <div class="about-image" data-aos="fade-right" data-aos-delay="200">
+                <div class="about-image-wrapper">
+                    <img src="profile.jpg" alt="Sanjay Kumar">
+                    <div class="about-image-shape"></div>
+                </div>
+            </div>
+
+            <div class="about-content" data-aos="fade-left" data-aos-delay="300">
+                <h3 class="about-heading">
+                    Software Engineer & <span class="gradient-text">Web Developer</span>
+                </h3>
+                <p class="about-text">
+                    I am Akula Sanjay Kumar, a B.Tech Computer Science student passionate about software engineering, web development and problem solving. I enjoy creating responsive web applications, learning new technologies and contributing to innovative products.
+                </p>
+                <div class="about-details">
+                    <div class="detail-item">
+                        <i class="fas fa-user-graduate"></i>
+                        <div>
+                            <span class="detail-label">Education</span>
+                            <span class="detail-value">B.Tech Computer Science</span>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-location-dot"></i>
+                        <div>
+                            <span class="detail-label">Location</span>
+                            <span class="detail-value">Challapalli, Andhra Pradesh</span>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <span class="detail-label">Email</span>
+                            <span class="detail-value">akulasanju2599@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-language"></i>
+                        <div>
+                            <span class="detail-label">Languages Known</span>
+                            <span class="detail-value">Telugu, English</span>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <span class="detail-label">Phone</span>
+                            <span class="detail-value">+91 7382212599</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Removed Download CV - replaced with 3D interactive elements -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SKILLS SECTION ================= -->
+    <section id="skills" class="skills">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-subtitle">My Skills</span>
+            <h2 class="section-title">Technical <span class="gradient-text">Skills</span></h2>
+            <div class="section-divider">
+                <span class="divider-line"></span>
+                <span class="divider-icon"><i class="fas fa-code"></i></span>
+                <span class="divider-line"></span>
+            </div>
+        </div>
+
+        <div class="skills-grid" id="skills-grid">
+            <div class="skill-card">
+                <i class="fab fa-python"></i>
+                <h3>Python</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-code"></i>
+                <h3>C Programming</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-laptop-code"></i>
+                <h3>C++</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-database"></i>
+                <h3>SQL</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fab fa-html5"></i>
+                <h3>HTML5</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fab fa-css3-alt"></i>
+                <h3>CSS3</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fab fa-js"></i>
+                <h3>JavaScript</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fab fa-github"></i>
+                <h3>GitHub</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= PROJECTS SECTION ================= -->
+    <section id="projects" class="projects">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-subtitle">My Work</span>
+            <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+            <div class="section-divider">
+                <span class="divider-line"></span>
+                <span class="divider-icon"><i class="fas fa-laptop-code"></i></span>
+                <span class="divider-line"></span>
+            </div>
+        </div>
+
+        <div id="projects-list" class="projects-grid">
+            <!-- Projects will be populated by JS -->
+        </div>
+    </section>
+
+    <!-- ================= EXPERIENCE SECTION ================= -->
+    <section id="experience" class="experience">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-subtitle">Experience</span>
+            <h2 class="section-title">My <span class="gradient-text">Journey</span></h2>
+            <div class="section-divider">
+                <span class="divider-line"></span>
+                <span class="divider-icon"><i class="fas fa-briefcase"></i></span>
+                <span class="divider-line"></span>
+            </div>
+        </div>
+
+        <div class="timeline-container">
+            <div class="timeline-line"></div>
+            <div id="experience-list" class="timeline">
+                <!-- Experience will be populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= CONTACT SECTION ================= -->
+    <section id="contact" class="contact">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-subtitle">Get In Touch</span>
+            <h2 class="section-title">Let's <span class="gradient-text">Connect</span></h2>
+            <div class="section-divider">
+                <span class="divider-line"></span>
+                <span class="divider-icon"><i class="fas fa-envelope"></i></span>
+                <span class="divider-line"></span>
+            </div>
+        </div>
+
+        <div class="contact-container">
+            <div class="contact-info" data-aos="fade-right" data-aos-delay="200">
+                <div class="contact-info-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>akulasanju2599@gmail.com</p>
+                </div>
+                <div class="contact-info-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Location</h3>
+                    <p>Challapalli, Krishna Dt.<br>Andhra Pradesh, India</p>
+                </div>
+                <div class="contact-info-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Phone</h3>
+                    <p><a href="tel:+917382212599" style="color:inherit;text-decoration:none;">+91 7382212599</a></p>
+                </div>
+                <div class="contact-social">
+                    <a href="https://github.com/SanjayKumar-Akula" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/sanjaykumar-akula-1689902b5/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="mailto:akulasanju2599@gmail.com"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+
+            <form class="contact-form" id="contactForm" data-aos="fade-left" data-aos-delay="300">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <span class="form-focus-border"></span>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <span class="form-focus-border"></span>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="subject" placeholder="Subject">
+                    <span class="form-focus-border"></span>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                    <span class="form-focus-border"></span>
+                </div>
+                <button type="submit" class="btn btn-primary btn-submit">
+                    <i class="fas fa-paper-plane"></i>
+                    <span class="btn-text">Send Message</span>
+                    <span class="btn-loading" style="display:none;">
+                        <i class="fas fa-spinner fa-spin"></i> Sending...
+                    </span>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Akula's Portfolio</div>
+            <p class="footer-text">
+                Crafting digital experiences with passion and precision.
+            </p>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-bottom">
+                <p id="footerCopyright">© 2026 Akula Sanjay Kumar. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= SCRIPTS ================= -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

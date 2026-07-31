@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #0f172a; color: #fff; }
+    .container { max-width: 900px; margin: auto; }
+    .card { background: #1e293b; padding: 20px; border-radius: 12px; margin-bottom: 20px; }
+    label { display: block; margin-top: 10px; font-weight: 600; }
+    input, textarea, button { width: 100%; padding: 10px; margin-top: 6px; border-radius: 8px; border: 1px solid #475569; }
+    button { background: #2563eb; color: white; cursor: pointer; }
+    .messages { margin-top: 20px; }
+    .message-item { background: #334155; padding: 10px; border-radius: 8px; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Portfolio Admin Dashboard</h1>
+
+    <div class="card">
+      <h2>Update Portfolio Content</h2>
+      <form id="portfolio-form">
+        <label>Name</label>
+        <input type="text" id="name" required />
+        <label>Title</label>
+        <input type="text" id="title" required />
+        <label>Summary</label>
+        <textarea id="summary" rows="4" required></textarea>
+        <label>Skills (comma separated)</label>
+        <input type="text" id="skills" required />
+        <label>Projects JSON</label>
+        <textarea id="projects" rows="6" required></textarea>
+        <label>Experience JSON</label>
+        <textarea id="experience" rows="6" required></textarea>
+        <button type="submit">Save Portfolio</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Messages</h2>
+      <div id="messages" class="messages"></div>
+    </div>
+  </div>
+
+  <script>
+    const adminUsername = window.localStorage.getItem('adminUsername') || 'admin';
+    const adminPassword = window.localStorage.getItem('adminPassword') || 'admin123';
+
+    function getAuthHeaders() {
+      return {
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic ' + btoa(`${adminUsername}:${adminPassword}`)
+      };
+    }
+
+    async function loadPortfolio() {
+      const response = await fetch('/api/portfolio');
+      const data = await response.json();
+      document.getElementById('name').value = data.name || '';
+      document.getElementById('title').value = data.title || '';
+      document.getElementById('summary').value = data.summary || '';
+      document.getElementById('skills').value = (data.skills || []).join(', ');
+      document.getElementById('projects').value = JSON.stringify(data.projects || [], null, 2);
+      document.getElementById('experience').value = JSON.stringify(data.experience || [], null, 2);
+    }
+
+    async function loadMessages() {
+      const response = await fetch('/api/admin/messages', { headers: getAuthHeaders() });
+      const data = await response.json();
+      const messages = document.getElementById('messages');
+      messages.innerHTML = '';
+
+      if (!data.length) {
+        messages.innerHTML = '<p>No messages yet.</p>';
+        return;
+      }
+
+      data.forEach((item) => {
+        const div = document.createElement('div');
+        div.className = 'message-item';
+        div.innerHTML = `<strong>${item.name}</strong> <span>(${item.email})</span><br>${item.message}<br><small>${item.createdAt}</small>`;
+        messages.appendChild(div);
+      });
+    }
+
+    document.getElementById('portfolio-form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const payload = {
+        name: document.getElementById('name').value,
+        title: document.getElementById('title').value,
+        summary: document.getElementById('summary').value,
+        skills: document.getElementById('skills').value.split(',').map((item) => item.trim()).filter(Boolean),
+        projects: JSON.parse(document.getElementById('projects').value || '[]'),
+        experience: JSON.parse(document.getElementById('experience').value || '[]')
+      };
+
+      const response = await fetch('/api/admin/portfolio', {
+        method: 'POST',
+        headers: getAuthHeaders(),
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json();
+      alert(result.message || 'Saved');
+      loadPortfolio();
+    });
+
+    loadPortfolio();
+    loadMessages();
+  </script>
+</body>
+</html>
